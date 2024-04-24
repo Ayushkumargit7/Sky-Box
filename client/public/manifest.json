@@ -1,0 +1,11 @@
+{
+    "short_name": "MailApp",
+    "name": "MailApp Client",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0a4da2",
+    "scope": "/",
+    "orientation": "portrait-primary"
+  }
+  
