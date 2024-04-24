@@ -4,7 +4,6 @@ import { AppBar, Toolbar, Box, InputBase, styled } from '@mui/material';
 import { Menu as MenuIcon, Tune, HelpOutlineOutlined, SettingsOutlined, 
     AppsOutlined, AccountCircleOutlined, Search } from '@mui/icons-material'
 
-import { gmailLogo } from '../constants/constant';
 
 const StyledAppBar = styled(AppBar)`
     background: #f5F5F5;
@@ -42,7 +41,7 @@ const Header = ({ toggleDrawer }) => {
         <StyledAppBar position="static">
             <Toolbar>
                 <MenuIcon color="action" onClick={toggleDrawer} />
-                <img src={gmailLogo} alt="logo" style={{ width: 110, marginLeft: 15 }} />
+                <img src="../Logo.png" alt="logo" style={{ width: 110, marginLeft: 15 }} />
                 <SearchWrapper>
                     <Search color="action" />
                     <InputBase />
