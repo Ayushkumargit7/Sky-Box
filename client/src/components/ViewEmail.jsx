@@ -84,27 +84,6 @@ const ViewEmail = () => {
                     </Box>
                     <Typography style={{ marginTop: 20 }}>{email.body}</Typography>
 
-
-                    {/* import { summarizeEmail } from '../utils/summarizeEmail';
-
-                    const ViewEmail = () => {
-                        // Existing code...
-
-                        const [summary, setSummary] = useState('');
-
-                        useEffect(() => {
-                            const emailSummary = summarizeEmail(email.body);
-                            setSummary(emailSummary);
-                        }, [email.body]);
-
-                        // Existing code...
-
-                        return (
-                            // Existing JSX...
-                            <Typography style={{ marginTop: 20 }}>{summary}</Typography>
-                            // Existing JSX...
-                        );
-                    } */}
                 <SummarizeEmail email={email} />
                 </Container>
             </Box>
