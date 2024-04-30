@@ -4,6 +4,7 @@ import { useOutletContext, useLocation } from 'react-router-dom';
 import { emptyProfilePic } from '../constants/constant';
 import { ArrowBack, Delete } from '@mui/icons-material';
 import { useEffect } from 'react';
+import SummarizeEmail from './SummarizeEmail';
 
 const IconWrapper = styled(Box)({
     padding: 15
@@ -82,6 +83,29 @@ const ViewEmail = () => {
                         </Date>
                     </Box>
                     <Typography style={{ marginTop: 20 }}>{email.body}</Typography>
+
+
+                    {/* import { summarizeEmail } from '../utils/summarizeEmail';
+
+                    const ViewEmail = () => {
+                        // Existing code...
+
+                        const [summary, setSummary] = useState('');
+
+                        useEffect(() => {
+                            const emailSummary = summarizeEmail(email.body);
+                            setSummary(emailSummary);
+                        }, [email.body]);
+
+                        // Existing code...
+
+                        return (
+                            // Existing JSX...
+                            <Typography style={{ marginTop: 20 }}>{summary}</Typography>
+                            // Existing JSX...
+                        );
+                    } */}
+                <SummarizeEmail email={email} />
                 </Container>
             </Box>
         </Box>
