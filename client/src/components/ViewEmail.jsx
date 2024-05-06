@@ -37,6 +37,7 @@ const Image = styled('img')({
 const Container = styled(Box)({
     marginLeft: 15,
     width: '100%',
+    padding: '20px 60px 40px 20px',
     '& > div': {
         display: 'flex',
         '& > p > span': {
@@ -67,7 +68,7 @@ const ViewEmail = () => {
                 <Delete fontSize='small' color="action" style={{ marginLeft: 40 }} />
             </IconWrapper>
             <Subject>{email.subject} <Indicator component="span">Inbox</Indicator></Subject>
-            <Box style={{ display: 'flex' }}>
+            <Box style={{ display: 'flex'}}>
                 <Image src={emptyProfilePic} alt="profile" />
                 <Container>
                     <Box>
@@ -82,7 +83,7 @@ const ViewEmail = () => {
                             {(new window.Date(email.date)).getFullYear()} 
                         </Date>
                     </Box>
-                    <Typography style={{ marginTop: 20 }}>{email.body}</Typography>
+                    <Typography style={{ marginTop: 20, textAlign: 'justify' }}>{email.body}</Typography>
 
                 <SummarizeEmail email={email} />
                 </Container>

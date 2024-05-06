@@ -1,5 +1,3 @@
-
-
 import { Typography, Box } from "@mui/material";
 import { useRouteError } from "react-router-dom"
 

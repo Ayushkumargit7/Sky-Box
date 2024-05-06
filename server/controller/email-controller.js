@@ -1,11 +1,13 @@
 import Email from "../model/email.js";
+import { sendEmail } from '../service/emailService.js';
 
 export const saveSendEmails = async (request, response) => {
     try {
-        const email = await new Email(request.body);
-        email.save();
-
-        response.status(200).json('email saved successfully');
+        const { to, subject, body } = request.body;
+        const email = await new Email({ to, subject, body, date: new Date() });
+        await email.save();
+        await sendEmail(to, subject, body, `<p>${body}</p>`);
+        response.status(200).json('Email saved and sent successfully');
     } catch (error) {
         response.status(500).json(error.message);
     }

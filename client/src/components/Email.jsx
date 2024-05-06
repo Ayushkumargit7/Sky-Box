@@ -7,7 +7,11 @@ import { routes } from "../routes/routes";
 
 
 const Wrapper = styled(ListItem)`
+    display: flex; 
+    align-items: center;
     padding: 0 0 0 10px;
+    width: 100%; 
+    box-sizing: border-box; 
     background: #f2f6fc;
     cursor: pointer;
     & > div {
@@ -66,10 +70,30 @@ const Email = ({ email, setStarredEmail, selectedEmails, setSelectedEmails }) =>
                 : 
                     <StarBorder fontSize="small" style={{ marginRight: 10 }} onClick={() => toggleStarredEmail()} /> 
             }
-            <Box onClick={() => navigate(routes.view.path, { state: { email: email }})}>
-            <Typography style={{ width: 200 }}>To:{email.to ? email.to.split('@')[0] : "Unknown"}</Typography>
+            <Box onClick={() => navigate(routes.view.path, { state: { email: email }})}
+            style={{
+                flex: '1 1 auto',
+                overflow: 'hidden',
+                display: 'flex', 
+                gap: '5px',
+                width: '100%',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
+            }}
+            >
+            <Typography style={{ 
+                width: 200
+            }}>To:{email.to ? email.to.split('@')[0] : "Unknown"}</Typography>
                 <Indicator>Inbox</Indicator>
-                <Typography>{email.subject} {email.body && '-'} {email.body}</Typography>
+                <Typography 
+                    style={{
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        width: '100%'
+                    }}
+                >{email.subject} {email.body && '-'} {email.body}</Typography>
                 <Date>
                     {(new window.Date(email.date)).getDate()}&nbsp;
                     {(new window.Date(email.date)).toLocaleString('default', { month: 'long' })}

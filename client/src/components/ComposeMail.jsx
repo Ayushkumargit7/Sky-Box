@@ -7,17 +7,18 @@ import { API_URLS } from '../services/api.urls';
 import CustomPrompt from './CustomPrompt';
 
 const dialogStyle = {
-    height: '90%',
-    width: '80%',
+    height: '80%',
+    width: '50%',
     maxWidth: '100%',
     maxHeight: '100%',
     boxShadow: 'none',
-    borderRadius: '10px 10px 0 0',
+    borderRadius: '10px',
 }
 
 const Header = styled(Box)`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 15px;
     background: #f2f6fc;
     & > p {
@@ -40,7 +41,8 @@ const RecipientWrapper = styled(Box)`
 const Footer = styled(Box)`
     display: flex;
     justify-content: space-between;
-    padding: 10px 15px;
+    align-items: center;
+    padding: 8px 50px 0px 30px;
     align-items: center;
 `;
 
@@ -59,16 +61,8 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
         subject: '',
         body: ''
     });    
-    const sentEmailService = useApi(API_URLS.saveSentEmails);
     const saveDraftService = useApi(API_URLS.saveDraftEmails);
     const [prompt, setPrompt] = useState("");
-
-    const config = {
-        Username: process.env.REACT_APP_USERNAME,
-        Password: process.env.REACT_APP_PASSWORD,
-        Host: 'smtp.elasticemail.com',
-        Port: 2525,
-    }
 
     const onValueChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value || '' });
@@ -81,53 +75,50 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
     const sendEmail = async (e) => {
         e.preventDefault();
 
-        if (window.Email) {
-            window.Email.send({
-                ...config,
-                To : data.to,
-                From : "codeforinterview03@gmail.com",
-                Subject : data.subject,
-                Body : data.body
-            }).then(
-                message => alert(message)
-            ).catch(
-                error => alert(error)
-            );
-        }
-
+        const baseUrl = 'http://localhost:8000';
+        const endpoint = API_URLS.saveSentEmails.endpoint;
+        const fullUrl = `${baseUrl}/${endpoint}`;    
+    
         const payload = {
-            to : data.to,
-            from : "codeforinterview03@gmail.com",
-            subject : data.subject,
-            body : data.body,
-            date: new Date(),
-            image: '',
-            name: 'Code for Interview',
-            starred: false,
-            type: 'sent'
+            to: data.to,
+            subject: data.subject,
+            body: data.body,
+        };
+    
+        try {
+            const response = await fetch(fullUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+    
+            if (response.ok) {
+                alert('Email sent successfully');
+                setOpenDrawer(false);
+                setData({ to: '', subject: '', body: '' });
+            } else {
+                const errorData = await response.json();
+                alert(`Error sending email: ${errorData.message}`);
+            }
+        } catch (error) {
+            alert(`Error sending email: ${error.message}`);
         }
-
-        sentEmailService.call(payload);
-
-        if (!sentEmailService.error) {
-            setOpenDrawer(false);
-            setData({ to: '', subject: '', body: '' });
-        } else {
-
-        }
-    }
+    };
+    
 
     const closeComposeMail = (e) => {
         e.preventDefault();
 
         const payload = {
             to : data.to,
-            from : "codeforinterview03@gmail.com",
+            from : "pranathi_j@srmap.edu.in",
             subject : data.subject,
             body : data.body,
             date: new Date(),
             image: '',
-            name: 'Code for Interview',
+            name: 'Pranathi Jayanthi',
             starred: false,
             type: 'drafts'
         }
@@ -158,11 +149,22 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
             </RecipientWrapper>
             <TextField 
                 multiline
-                rows={20}
-                sx={{ '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
+                rows={9}
+                sx={{ 
+                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
+                    '& textarea': {
+                        padding: '0px 20px 0px 15px',
+                        textAlign: 'justify',
+                        scrollbarWidth: 'none',
+                        '&::-webkit-scrollbar': {
+                            display: 'none',
+                        }
+                    }
+                }}
                 name="body"
                 onChange={(e) => onValueChange(e)}
                 value={data.body}
+                fullWidth
             />
             <Footer>
                 <SendButton onClick={(e) => sendEmail(e)}>Send</SendButton>
