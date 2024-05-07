@@ -19,7 +19,7 @@ const PORT = 8000;
 // dotenv.config();
 
 // // Access your API key as an environment variable (see "Set up your API key" above)
-// const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+// const genAI = new GoogleGenerativeAI(process.env.API_KEY_Gemini);
 
 // async function run() {
 //   // For text-only input, use the gemini-pro model
@@ -79,7 +79,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.API_KEY_Gemini);
 
 
 app.post('/generate', async (req, res) => {
