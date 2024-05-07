@@ -38,6 +38,42 @@ const PORT = 8000;
 // Gen AI code ends
 
 // Gen AI code starts
+
+
+import sgMail from '@sendgrid/mail';
+const API_KEY = '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';
+sgMail.setApiKey(API_KEY);
+const msg = {
+  to: 'ayush_kumar@srmap.edu.in',
+  from: 'ayushk1708@gmail.com', // Use the email address or domain you verified above
+  subject: 'Sending with Twilio SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+};
+sgMail
+  .send(msg)
+  .then(() => {}, error => {
+    console.error(error);
+
+    if (error.response) {
+      console.error(error.response.body)
+    }
+  });
+//ES8
+(async () => {
+  try {
+    await sgMail.send(msg);
+  } catch (error) {
+    console.error(error);
+
+    if (error.response) {
+      console.error(error.response.body)
+    }
+  }
+})();
+
+
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
 dotenv.config();
