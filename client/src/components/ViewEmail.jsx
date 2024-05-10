@@ -6,12 +6,12 @@ import { useEffect } from 'react';
 import SummarizeEmail from './SummarizeEmail';
 
 const IconWrapper = styled(Box)({
-    padding: 15
+    padding: '90px 10px 40px 20px'
 });
 
 const Subject = styled(Typography)({
     fontSize: 22,
-    margin: '40px 30px 20px 70px',
+    margin: '20px 0',
     display: 'flex'
 })
 
@@ -58,6 +58,7 @@ const ViewEmail = () => {
     
     const { state } = useLocation();
     const { email } = state;
+    console.log("Email subject:", email.subject);
 
     return (
         
@@ -66,7 +67,9 @@ const ViewEmail = () => {
                 <ArrowBack fontSize='small' color="action" onClick={() => window.history.back() } />
                 <Delete fontSize='small' color="action" style={{ marginLeft: 40 }} />
             </IconWrapper>
-            <Subject>{email.subject} <Indicator component="span">Inbox</Indicator></Subject>
+            <Subject><Typography component="div">123</Typography>
+{email.subject}
+<Typography component="div">456</Typography><Indicator component="span">Inbox</Indicator></Subject>
             <Box style={{ display: 'flex'}}>
                 <Image src={emptyProfilePic} alt="profile" />
                 <Container>

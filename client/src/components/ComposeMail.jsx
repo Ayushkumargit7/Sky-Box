@@ -7,23 +7,24 @@ import { API_URLS } from '../services/api.urls';
 import CustomPrompt from './CustomPrompt';
 
 const dialogStyle = {
-    height: '90%',
-    width: '80%',
+    height: '75%',
+    width: '50%',
     maxWidth: '100%',
     maxHeight: '100%',
     boxShadow: 'none',
-    borderRadius: '10px 10px 0 0',
+    borderRadius: '10px',
 }
 
 const Header = styled(Box)`
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-    background: #f2f6fc;
-    & > p {
-        font-size: 14px;
-        font-weight: 500;
-    }
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 15px;
+background: #f2f6fc;
+& > p {
+    font-size: 14px;
+    font-weight: 500;
+}
 `;
 
 const RecipientWrapper = styled(Box)`
@@ -40,7 +41,8 @@ const RecipientWrapper = styled(Box)`
 const Footer = styled(Box)`
     display: flex;
     justify-content: space-between;
-    padding: 10px 15px;
+    align-items: center;
+    padding: 20px 40px 0px 30px;
     align-items: center;
 `;
 
@@ -77,7 +79,7 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
 
         try {
             const response = await axios.post('http://localhost:8000/sendEmail', {
-                mailContent: data.body, // Send the email body as mailContent
+                mailContent: data.body,
                 subject : data.subject,
                 to : data.to
             });
@@ -150,8 +152,14 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
             </RecipientWrapper>
             <TextField 
                 multiline
-                rows={20}
-                sx={{ '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
+                rows={9}
+                sx={{ 
+                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
+                    '& textarea': {
+                        padding: '15px 20px 0px 15px',
+                        textAlign: 'justify',
+                    }
+                }}
                 name="body"
                 onChange={(e) => onValueChange(e)}
                 value={data.body}
