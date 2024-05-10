@@ -88,7 +88,7 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
             window.Email.send({
                 ...config,
                 To : data.to,
-                From : "codeforinterview03@gmail.com",
+                From : "jvlpranathi@gmail.com",
                 Subject : data.subject,
                 Body : data.body
             }).then(
@@ -100,12 +100,12 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
 
         const payload = {
             to : data.to,
-            from : "codeforinterview03@gmail.com",
+            from : "jvlpranathi@gmail.com",
             subject : data.subject,
             body : data.body,
             date: new Date(),
             image: '',
-            name: 'Code for Interview',
+            name: 'A SkyBox Email',
             starred: false,
             type: 'sent'
         }
@@ -125,12 +125,12 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
 
         const payload = {
             to : data.to,
-            from : "codeforinterview03@gmail.com",
+            from : "jvlpranathi@gmail.com",
             subject : data.subject,
             body : data.body,
             date: new Date(),
             image: '',
-            name: 'Code for Interview',
+            name: 'A SkyBox Email',
             starred: false,
             type: 'drafts'
         }
