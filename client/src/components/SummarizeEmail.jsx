@@ -1,6 +1,5 @@
 import React from 'react'
 import Loadinglogo from '../sp.svg';
-import { useState } from 'react';
 
 function SummarizeEmail({ email }) {
     const [isLoading, setIsLoading] = useState(false);
