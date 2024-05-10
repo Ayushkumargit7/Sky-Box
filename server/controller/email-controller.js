@@ -2,14 +2,21 @@ import Email from "../model/email.js";
 
 export const saveSendEmails = async (request, response) => {
     try {
-        const email = await new Email(request.body);
-        email.save();
+        const { name, date, from, to, body, type } = request.body;
+        if (!name || !date || !from || !to || !type) {  
+            return response.status(400).json({ message: 'Missing required fields' });
+        }
 
-        response.status(200).json('email saved successfully');
+        const email = new Email({ name, date, from, to, body, type }); 
+        await email.save();
+
+        response.status(200).json('Email saved successfully');
     } catch (error) {
-        response.status(500).json(error.message);
+        console.error('Error saving email:', error);
+        response.status(500).json({ message: error.message });
     }
-}
+};
+
 
 export const getEmails = async (request, response) => {
     try {

@@ -1,5 +1,3 @@
-
-
 import { AppBar, Toolbar, Box, InputBase, styled } from '@mui/material';
 import { Menu as MenuIcon, Tune, HelpOutlineOutlined, SettingsOutlined, 
     AppsOutlined, AccountCircleOutlined, Search } from '@mui/icons-material'
@@ -8,6 +6,10 @@ import { Menu as MenuIcon, Tune, HelpOutlineOutlined, SettingsOutlined,
 const StyledAppBar = styled(AppBar)`
     background: #f5F5F5;
     box-shadow: none;
+    position: fixed;
+    top: 0;        
+    width: 100%;
+    z-index: 1100;
 `;
 
 const SearchWrapper = styled(Box)`
@@ -38,7 +40,7 @@ const OptionsWrapper = styled(Box)`
 const Header = ({ toggleDrawer }) => {
 
     return (
-        <StyledAppBar position="static">
+        <StyledAppBar>
             <Toolbar>
                 <MenuIcon color="action" onClick={toggleDrawer} />
                 <img src="../Logo.png" alt="logo" style={{ width: 110, marginLeft: 15 }} />

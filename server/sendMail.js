@@ -1,5 +1,4 @@
-// const nodemailer = require("nodemailer");
-// require("dotenv").config();
+
 import dotenv from "dotenv";
 dotenv.config();
 import nodemailer from "nodemailer";
@@ -33,8 +32,7 @@ const mailOptions = {
         address: process.env.USER
     }, 
     // sender address
-    // to: "jvlpranathi@gmail.com", // list of receivers
-    to: "ayushk1708@gmail.com", // list of receivers
+    to: "xyz@gmail.com", // list of receivers
     subject: "Hi !! working right 😎 From nodemailer", // Subject line
     text: mailContent,
     html: `<p>${mailContent.replace(/\n/g, "<br>")}</p>`,

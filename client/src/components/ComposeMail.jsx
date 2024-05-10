@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import axios from 'axios'; 
 import { Dialog, styled, Typography, Box, InputBase, TextField, Button } from '@mui/material'; 
 import { Close, DeleteOutline } from '@mui/icons-material';
 import useApi from '../hooks/useApi';
@@ -63,13 +63,6 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
     const saveDraftService = useApi(API_URLS.saveDraftEmails);
     const [prompt, setPrompt] = useState("");
 
-    const config = {
-        Username: process.env.REACT_APP_USERNAME,
-        Password: process.env.REACT_APP_PASSWORD,
-        Host: 'smtp.elasticemail.com',
-        Port: 2525,
-    }
-
     const onValueChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value || '' });
     }
@@ -78,44 +71,43 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
         setData({ ...data, body: generatedText });
     };
 
+
     const sendEmail = async (e) => {
         e.preventDefault();
 
-        if (window.Email) {
-            window.Email.send({
-                ...config,
-                To : data.to,
-                From : "codeforinterview03@gmail.com",
-                Subject : data.subject,
-                Body : data.body
-            }).then(
-                message => alert(message)
-            ).catch(
-                error => alert(error)
-            );
-        }
+        try {
+            const response = await axios.post('http://localhost:8000/sendEmail', {
+                mailContent: data.body, // Send the email body as mailContent
+                subject : data.subject,
+                to : data.to
+            });
 
-        const payload = {
-            to : data.to,
-            from : "codeforinterview03@gmail.com",
-            subject : data.subject,
-            body : data.body,
-            date: new Date(),
-            image: '',
-            name: 'Code for Interview',
-            starred: false,
-            type: 'sent'
-        }
+            if (response.status === 200) {
+                console.log("Email sent successfully");
+                setOpenDrawer(false);
+                setData({ to: '', subject: '', body: '' });
 
-        sentEmailService.call(payload);
+                const payload = {
+                    to : data.to,
+                    from : "codeforinterview03@gmail.com",
+                    subject : data.subject,
+                    body : data.body,
+                    date: new Date(),
+                    image: '',
+                    name: 'Code for Interview',
+                    starred: false,
+                    type: 'sent'
+                }
+                sentEmailService.call(payload);
 
-        if (!sentEmailService.error) {
-            setOpenDrawer(false);
-            setData({ to: '', subject: '', body: '' });
-        } else {
-
+            } else {
+                console.error("Failed to send email");
+            }
+        } catch (error) {
+            console.error("Error sending email:", error);
         }
     }
+
 
     const closeComposeMail = (e) => {
         e.preventDefault();

@@ -1,4 +1,3 @@
-
 import { Box, Typography, styled } from '@mui/material';
 import { useOutletContext, useLocation } from 'react-router-dom';
 import { emptyProfilePic } from '../constants/constant';
@@ -12,7 +11,7 @@ const IconWrapper = styled(Box)({
 
 const Subject = styled(Typography)({
     fontSize: 22,
-    margin: '10px 0 20px 75px',
+    margin: '40px 30px 20px 70px',
     display: 'flex'
 })
 
@@ -37,6 +36,7 @@ const Image = styled('img')({
 const Container = styled(Box)({
     marginLeft: 15,
     width: '100%',
+    padding: '20px 60px 40px 20px',
     '& > div': {
         display: 'flex',
         '& > p > span': {
@@ -61,13 +61,13 @@ const ViewEmail = () => {
 
     return (
         
-        <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { width: '100%' } }>
+        <Box style={openDrawer ? { marginLeft: 280, width: '100%' } : { width: '100%' } }>
             <IconWrapper>
                 <ArrowBack fontSize='small' color="action" onClick={() => window.history.back() } />
                 <Delete fontSize='small' color="action" style={{ marginLeft: 40 }} />
             </IconWrapper>
             <Subject>{email.subject} <Indicator component="span">Inbox</Indicator></Subject>
-            <Box style={{ display: 'flex' }}>
+            <Box style={{ display: 'flex'}}>
                 <Image src={emptyProfilePic} alt="profile" />
                 <Container>
                     <Box>
@@ -82,8 +82,8 @@ const ViewEmail = () => {
                             {(new window.Date(email.date)).getFullYear()} 
                         </Date>
                     </Box>
-                    <Typography style={{ marginTop: 20 }}>{email.body}</Typography>
-
+                    <Typography style={{ marginTop: 20, textAlign: 'justify', padding: '0px 20px 50px 10px' }}>{email.body}</Typography>
+              
                 <SummarizeEmail email={email} />
                 </Container>
             </Box>

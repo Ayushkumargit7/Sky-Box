@@ -43,7 +43,7 @@ const Emails = () => {
     
     return (
         <Box style={openDrawer ? { marginLeft: 250, width: '100%'} : { width: '100%' } }>
-            <Box style={{ padding: '20px 10px 0 10px', display: 'flex', alignItems: 'center'}}>
+            <Box style={{ padding: '75px 10px 0 10px', display: 'flex', alignItems: 'center'}}>
                 <Checkbox size="small" onChange={(e) => selectAllEmails(e)} />
                 <DeleteOutline onClick={(e) => deleteSelectedEmails(e)} />
             </Box>
