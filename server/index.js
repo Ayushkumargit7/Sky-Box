@@ -6,7 +6,7 @@ import routes from './routes/route.js';
 const app = express();
 
 app.use(cors());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', routes);
 
@@ -44,7 +44,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.API_KEY_Gemini);
 
 
 app.post('/generate', async (req, res) => {

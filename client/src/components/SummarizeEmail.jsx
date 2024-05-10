@@ -33,14 +33,14 @@ function SummarizeEmail({ email }) {
     return (
     <div >
         <button
-        className="p-2 bg-green-300 hover:bg-green-400 rounded fixed bottom-0 left-64 m-2 w-50 px-2"
+        className="p-2 bg-green-300 hover:bg-green-400 rounded fixed bottom-5 left-72 m-2 w-50 px-2"
         onClick={handleGenerate}
         >
         {isLoading ? <img src={Loadinglogo} className="h-4 w-4" /> : "Summarize the Email"} 
         </button>
         {summarizedText &&
           (
-          <div className='border-solid border-2 border-zinc-600 p-2 mt-2 mr-2'>
+          <div className='border-solid border-2 border-zinc-600 p-4 mr-2 mb-16 text-justify'>
             <h1 className='font-semibold text-lg'>Summarized Email :</h1>
             <p>{summarizedText}</p>
           </div>

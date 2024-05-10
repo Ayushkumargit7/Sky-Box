@@ -5,15 +5,15 @@ dotenv.config();
 
 const USERNAME = process.env.DB_USERNAME;
 const PASSWORD = process.env.DB_PASSWORD; 
+const DB_URI = process.env.DB_URI;
 
-const Connection = () => {
-    const DB_URI = `mongodb+srv://User_2024:Skybox_2024@skybox-cluster.wjfj6vz.mongodb.net/?retryWrites=true&w=majority&appName=SkyBox-Cluster`;
+const Connection = async () => {
     try {
-        mongoose.connect(DB_URI, { useNewUrlParser: true });
+        await mongoose.connect(DB_URI, { useNewUrlParser: true });
         mongoose.set('strictQuery', false);
-        console.log('Database connected sucessfully');
+        console.log('Database connected successfully');
     } catch (error) {
-        console.log('Error while connecting with the database ', error.message)
+        console.log('Error while connecting with the database', error.message)
     }
 }
 

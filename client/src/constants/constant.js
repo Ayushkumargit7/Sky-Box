@@ -20,7 +20,7 @@ export const EMPTY_TABS = {
     },
     starred: {
         heading: 'No starred messages',
-        subHeading: "Stars let you give messages a special status to make them easier to find. To star a message, click on the star outline beside any message or conversation."
+        subHeading: "To star a message, click on the star outline beside any message or conversation."
     },
     sent: {
         heading: 'No sent messages!',

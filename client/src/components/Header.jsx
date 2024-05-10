@@ -1,5 +1,3 @@
-
-
 import { AppBar, Toolbar, Box, InputBase, styled } from '@mui/material';
 import { Menu as MenuIcon, Tune, HelpOutlineOutlined, SettingsOutlined, 
     AppsOutlined, AccountCircleOutlined, Search } from '@mui/icons-material'

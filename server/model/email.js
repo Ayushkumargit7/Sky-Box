@@ -22,12 +22,10 @@ const EmailSchema = mongoose.Schema({
     },
     starred: {
         type: Boolean,
-        required: true,
         default: false
     },
     bin: {
         type: Boolean,
-        required: true,
         default: false
     },
     type: {
